@@ -1,5 +1,6 @@
 package main;
 
+import Library.Library;
 import main.Books;
 
 import java.util.*;
@@ -19,6 +20,7 @@ public final class InputLoader {
         List<Integer> bookIds = new ArrayList<>();
         List<Integer> bookValues = new ArrayList<>();
         HashMap books = Books.Books().getBooks();
+        List<Library> libraries = new ArrayList<Library>();
         int noBooks = 0;
         int noLibraries = 0;
         int noDays = 0;
@@ -42,9 +44,14 @@ public final class InputLoader {
             HashMap sortedMap = sortHashMapByValues(Books.Books().getBooks());
 
 
-            System.out.println(sortedMap.toString());
+
             for (int i = 0; i < noLibraries; ++i) {
-                bookValues.add(fs.nextInt());
+                libraries.get(i).setNrBooks(fs.nextInt());
+                libraries.get(i).setSignDays(fs.nextInt());
+                libraries.get(i).setBookPerDay(fs.nextInt());
+                for (int j = 0; j < libraries.get(i).getNrBooks(); ++j) {
+                    libraries.get(i).getBooks().add(fs.nextInt());
+                }
             }
 
             fs.close();
@@ -60,7 +67,7 @@ public final class InputLoader {
             HashMap<Integer, Integer> passedMap) {
         List<Integer> mapKeys = new ArrayList<>(passedMap.keySet());
         List<Integer> mapValues = new ArrayList<>(passedMap.values());
-        Collections.sort(mapValues);
+        Collections.sort(mapValues, Collections.reverseOrder());
         Collections.sort(mapKeys);
 
         LinkedHashMap<Integer, Integer> sortedMap =
