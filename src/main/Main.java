@@ -56,11 +56,12 @@ public final class Main {
             allLibraries.remove(minLib);
             nrBooks = 0;
             while (scanDays != 0) {
-                for (int i = 0; i < minLib.getBookPerDay(); ++i) {
+                for (int i = 0; i < minLib.getBookPerDay() && minLib.getBooks().size() != 0; ++i) {
                     answerBooks.add(minLib.getBooks().get(i));
+                    minLib.updateBooks(sortedMap.get(minLib.getBooks().get(i)), minLib.getBooks().get(i)) ;
+                    nrBooks++;
                 }
                 scanDays--;
-                nrBooks++;
             }
             bookPerLib.add(nrBooks);
         }
