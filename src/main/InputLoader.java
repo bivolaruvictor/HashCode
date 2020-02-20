@@ -20,7 +20,7 @@ public final class InputLoader {
         List<Integer> bookIds = new ArrayList<>();
         List<Integer> bookValues = new ArrayList<>();
         HashMap books = Books.Books().getBooks();
-        List<Library> libraries;
+        List<Library> libraries = null;
         int noBooks = 0;
         int noLibraries = 0;
         int noDays = 0;
@@ -70,7 +70,7 @@ public final class InputLoader {
             e1.printStackTrace();
         }
 
-        return new Input(/*rounds, assetsIds, playerOrder*/);
+        return new Input(books, libraries, noDays);
     }
 
     public LinkedHashMap<Integer, Integer> sortHashMapByValues(

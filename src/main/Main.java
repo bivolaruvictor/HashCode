@@ -31,6 +31,14 @@ public final class Main {
         List<Integer> answerBooks = new ArrayList<>();
         List<Integer> answerLib = new ArrayList<>();
         List<Integer> bookPerLib = new ArrayList<>();
+        List<Library> allLibraries = new ArrayList<Library>();
+        HashMap<Integer, Integer> sortedMap = new HashMap<>();
+
+        // get the input
+        days = gameInput.getNoDays();
+        allLibraries = gameInput.getLibraries();
+        sortedMap = gameInput.getSortedMap();
+
         while (days <= 0) {
             minDays = days;
             for (Library currLib : allLibraries) {

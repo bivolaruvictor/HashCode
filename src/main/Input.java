@@ -9,12 +9,15 @@ public class Input {
     // ce ne trebuie
     private final HashMap<Integer, Integer> sortedMap;
     private final List<Library> libraries;
+    public final int noDays;
 
-    public Input(final HashMap<Integer, Integer> sortedMap, final List<Library> libraries) {
+    public Input(final HashMap<Integer, Integer> sortedMap, final List<Library> libraries, int noDays) {
         this.sortedMap = sortedMap;
         this.libraries = libraries;
+        this.noDays = noDays;
     }
     public Input() {
+        this.noDays = 0;
         this.sortedMap = null;
         this.libraries = null;
     }
@@ -27,6 +30,10 @@ public class Input {
 
     public List<Library> getLibraries() {
         return libraries;
+    }
+
+    public int getNoDays() {
+        return noDays;
     }
 
     public final boolean isValidInput() {
