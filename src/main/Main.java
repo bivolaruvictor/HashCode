@@ -18,8 +18,8 @@ public final class Main {
         InputLoader inputLoader = new InputLoader(args[0], args[1]);
         Input gameInput = inputLoader.load();
         try {
-
-            //fs.close();
+            FileSystem fs = new FileSystem(args[0], args[1]);
+            fs.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
