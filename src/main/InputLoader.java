@@ -20,7 +20,7 @@ public final class InputLoader {
         List<Integer> bookIds = new ArrayList<>();
         List<Integer> bookValues = new ArrayList<>();
         HashMap books = Books.Books().getBooks();
-        List<Library> libraries = new ArrayList<Library>();
+        List<Library> libraries;
         int noBooks = 0;
         int noLibraries = 0;
         int noDays = 0;
@@ -32,6 +32,7 @@ public final class InputLoader {
             noLibraries = fs.nextInt();
             noDays = fs.nextInt();
 
+            libraries = new ArrayList<Library>(noLibraries);
             for (int i = 0; i < noBooks; ++i) {
                 bookValues.add(fs.nextInt());
             }
@@ -46,12 +47,21 @@ public final class InputLoader {
 
 
             for (int i = 0; i < noLibraries; ++i) {
-                libraries.get(i).setNrBooks(fs.nextInt());
-                libraries.get(i).setSignDays(fs.nextInt());
-                libraries.get(i).setBookPerDay(fs.nextInt());
-                for (int j = 0; j < libraries.get(i).getNrBooks(); ++j) {
-                    libraries.get(i).getBooks().add(fs.nextInt());
+                Library library = new Library();
+                library.setId(i);
+                library.setNrBooks(i);
+                library.setNrBooks(fs.nextInt());
+                library.setSignDays(fs.nextInt());
+                library.setBookPerDay(fs.nextInt());
+
+                ArrayList<Integer> booksToAdd = new ArrayList<>();
+
+                for (int j = 0; j < library.getNrBooks(); ++j) {
+                    booksToAdd.add(fs.nextInt());
                 }
+
+                library.setBooks(booksToAdd);
+                libraries.add(library);
             }
 
             fs.close();
