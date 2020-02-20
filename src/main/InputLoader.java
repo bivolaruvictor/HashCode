@@ -49,7 +49,6 @@ public final class InputLoader {
             for (int i = 0; i < noLibraries; ++i) {
                 Library library = new Library();
                 library.setId(i);
-                library.setNrBooks(i);
                 library.setNrBooks(fs.nextInt());
                 library.setSignDays(fs.nextInt());
                 library.setBookPerDay(fs.nextInt());

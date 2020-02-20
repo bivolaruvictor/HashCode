@@ -53,6 +53,7 @@ public class Library {
     public void updateBooks(final int point, final int book) {
         this.maxPoints -= point;
         this.books.remove(book);
+        this.setNrBooks(nrBooks - 1);
     }
 
     public int getNrBooks() {
