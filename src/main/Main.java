@@ -58,16 +58,6 @@ public final class Main {
             while (scanDays != 0) {
                 for (int i = 0; i < minLib.getBookPerDay(); ++i) {
                     answerBooks.add(minLib.getBooks().get(i));
-//                    minLib.updateBooks(sortedMap.get(minLib.getBooks().get(i)), minLib.getBooks().get(i));
-//                    for (Library restLib : allLibraries) {
-//                        if (restLib.getId() != minLib.getId()) {
-//                            for (Integer sameBook : restLib.getBooks()) {
-//                                if (sameBook == minLib.getBooks().get(i)) {
-//                                    restLib.updateBooks(sortedMap.get(minLib.getBooks().get(i)), minLib.getBooks().get(i));
-//                                }
-//                            }
-//                        }
-//                    }
                 }
                 scanDays--;
                 nrBooks++;
