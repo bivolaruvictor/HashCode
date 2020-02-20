@@ -13,6 +13,10 @@ public class Library {
     private int maxPoints;
     private int nrBooks;
 
+    public Library () {
+
+    }
+
     Library(final int signDays, final int bookPerDay, final ArrayList<Integer> books, final int id) {
         this.id = id;
         this.signDays = signDays;
@@ -48,7 +52,7 @@ public class Library {
 
     public void updateBooks(final int point, final int book) {
         this.maxPoints -= point;
-        this.books =
+        this.books.remove(book);
     }
 
     public int getNrBooks() {
@@ -59,7 +63,7 @@ public class Library {
         this.nrBooks = nrBooks;
     }
 
-    public void calcMaxPoints(final HashMap<Integer, Integer> books) {
+    public int calcMaxPoints(final HashMap<Integer, Integer> books) {
         for (int currBook : this.books) {
             for (Integer key : books.keySet()) {
                 if (key == currBook) {
@@ -67,6 +71,12 @@ public class Library {
                 }
             }
         }
+        this.setMaxPoints(maxPoints);
+        return maxPoints;
+    }
+
+    public void setMaxPoints(final int max) {
+        this.maxPoints = max;
     }
 
     public int getMaxPoints() {
