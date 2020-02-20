@@ -39,7 +39,7 @@ public final class InputLoader {
             }
 
 
-            HashMap sortedMap = sortHash(Books.Books().getBooks());
+            HashMap sortedMap = sortHashMapByValues(Books.Books().getBooks());
 
 
             System.out.println(sortedMap.toString());
@@ -56,20 +56,32 @@ public final class InputLoader {
         return new Input(/*rounds, assetsIds, playerOrder*/);
     }
 
-    private HashMap sortHash(HashMap map) {
-        HashMap sortedMap = new HashMap<>();
-        List<Map.Entry<Integer, Integer>> list =
-                new LinkedList<Map.Entry<Integer, Integer>>(map.entrySet());
-        Collections.sort(list, new Comparator<Map.Entry<Integer, Integer> >() {
-            public int compare(Map.Entry<Integer, Integer> o1,
-                               Map.Entry<Integer, Integer> o2)
-            {
-                return (o1.getValue()).compareTo(o2.getValue());
-            }
-        });
+    public LinkedHashMap<Integer, Integer> sortHashMapByValues(
+            HashMap<Integer, Integer> passedMap) {
+        List<Integer> mapKeys = new ArrayList<>(passedMap.keySet());
+        List<Integer> mapValues = new ArrayList<>(passedMap.values());
+        Collections.sort(mapValues);
+        Collections.sort(mapKeys);
 
-        for (Map.Entry<Integer, Integer> aa : list) {
-            sortedMap.put(aa.getKey(), aa.getValue());
+        LinkedHashMap<Integer, Integer> sortedMap =
+                new LinkedHashMap<>();
+
+        Iterator<Integer> valueIt = mapValues.iterator();
+        while (valueIt.hasNext()) {
+            Integer val = valueIt.next();
+            Iterator<Integer> keyIt = mapKeys.iterator();
+
+            while (keyIt.hasNext()) {
+                Integer key = keyIt.next();
+                Integer comp1 = passedMap.get(key);
+                Integer comp2 = val;
+
+                if (comp1.equals(comp2)) {
+                    keyIt.remove();
+                    sortedMap.put(key, val);
+                    break;
+                }
+            }
         }
         return sortedMap;
     }
