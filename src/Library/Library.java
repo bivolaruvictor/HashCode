@@ -46,8 +46,9 @@ public class Library {
         this.bookPerDay = bookPerDay;
     }
 
-    public void updatePoints(final int point) {
+    public void updateBooks(final int point, final int book) {
         this.maxPoints -= point;
+        this.books =
     }
 
     public int getNrBooks() {
@@ -59,9 +60,13 @@ public class Library {
     }
 
     public void calcMaxPoints(final HashMap<Integer, Integer> books) {
-         for (Integer value : books.values()) {
-             this.maxPoints += value;
-         }
+        for (int currBook : this.books) {
+            for (Integer key : books.keySet()) {
+                if (key == currBook) {
+                    this.maxPoints += books.get(key);
+                }
+            }
+        }
     }
 
     public int getMaxPoints() {
@@ -76,21 +81,4 @@ public class Library {
         this.id = id;
     }
 
-    List<Integer> answerBooks = new ArrayList<>();
-    List<Integer> answerLib = new ArrayList<>();
-    List<Integer> bookPerLib = new ArrayList<>();
-    while (days <= 0) {
-        minDays = days;
-        for (Library currLib : allLibraries) {
-            if (currLib.getSignDays() < minDays) {
-                minDays = currLib.getSignDays();
-            }
-        }
-        scanDays = minDays;
-        days -= minDays;
-        answerLib.add(currLib.getId());
-        while (scanDays != 0) {
-            for (int i = 0; i < )
-        }
-    }
 }
